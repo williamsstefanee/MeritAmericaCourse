@@ -25,7 +25,7 @@ public class Exercise03_ShippingTotal {
      * calculateShippingRate(45) ➔ 0.75
      */
     public double calculateShippingRate(int weightPounds) {
-        if (weightPounds >= 0 && weightPounds <= 40) {
+        if (weightPounds <= MAX_WEIGHT_POUNDS) {
             return 0.50;
         } else {
             return 0.75;
@@ -52,20 +52,19 @@ public class Exercise03_ShippingTotal {
     public double calculateShippingTotal(int weightPounds) {
 
 
-        if (weightPounds >= 0 && weightPounds <= 40) {
+        if (weightPounds <= MAX_WEIGHT_POUNDS) {
 
             return weightPounds * UP_TO_40_LB_RATE;
 
 
-        }
-        else if  (weightPounds >= 40) {
+        } else   {
 
 
             return weightPounds * OVER_40_LB_RATE;
         }
 
 
-
+    }
 
 
     /*
@@ -87,17 +86,17 @@ public class Exercise03_ShippingTotal {
      * calculateShippingTotal(45, true) ➔ 30.375
      */
 
-        public double calculateShippingTotal(int weightPounds, boolean hasDiscount) {
-        if (weightPounds >= 0 && weightPounds <= 40 && hasDiscount) {
+    public double calculateShippingTotal(int weightPounds, boolean hasDiscount) {
+        if (weightPounds <= MAX_WEIGHT_POUNDS&&hasDiscount) {
             double beforeDiscount = weightPounds * UP_TO_40_LB_RATE;
             double findDiscount = beforeDiscount / 10;
-            return beforeDiscount - findDiscount;
+            return (weightPounds*UP_TO_40_LB_RATE)-findDiscount;
         }
-        if (weightPounds >=0 && weightPounds <=40){
+        else if (weightPounds <=MAX_WEIGHT_POUNDS){
             return weightPounds * UP_TO_40_LB_RATE;
         }
 
-        if (weightPounds >= 40 && hasDiscount) {
+        else if (hasDiscount) {
             double beforeDiscount = weightPounds * OVER_40_LB_RATE;
             double findDiscount = beforeDiscount / 10;
             return beforeDiscount - findDiscount;
@@ -106,7 +105,5 @@ public class Exercise03_ShippingTotal {
 
         }
 
-        }
     }
-
-
+}
